@@ -2,9 +2,20 @@
 
 var express = require('express');
 var cors = require('cors');
+var helmet = require('helmet');
 var vehicleRoutes = require('./routes/vehicleRoutes');
-var dbConnect = require('./config/db') / dbConnect();
+var dbConnect = require('./config/db');
+dbConnect();
 var app = express();
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://vercel.live']
+      // Add other directives as needed
+    }
+  }
+}));
 
 // Request logging middleware
 app.use(function (req, res, next) {
