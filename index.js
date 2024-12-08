@@ -7,6 +7,18 @@ dbConnect()
 
 const app = express()
 
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://vercel.live'],
+        // Add other directives as needed
+      },
+    },
+  })
+)
+
 // Request logging middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`)
