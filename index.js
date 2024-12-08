@@ -1,7 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const vehicleRoutes = require('./routes/vehicleRoutes')
-const dbConnect = require('./config/db') / dbConnect()
+const dbConnect = require('./config/db')
+
+dbConnect()
 
 const app = express()
 
